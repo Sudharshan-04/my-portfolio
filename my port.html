@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudharshan S - Python Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Teal Accent -->
+    <!-- Application Structure Plan: A single-page, scrollable portfolio with a fixed navigation header. The structure is thematic (Skills, Projects, Education) rather than linear to allow recruiters to quickly jump to the most relevant information. Key interactions include a dynamic radar chart for skills visualization and modal pop-ups for detailed project descriptions, designed to provide a clean overview with options for a deeper dive. This approach is more engaging than a static document and highlights technical skills effectively. -->
+    <!-- Visualization & Content Choices: 1. Skills -> Goal: Compare/Inform -> Viz: Radar Chart -> Interaction: Hover tooltips -> Justification: Provides a quick, holistic view of skill distribution and strengths in a visually engaging format. Library: Chart.js/Canvas. 2. Projects -> Goal: Organize/Inform -> Presentation: Card grid with modals -> Interaction: Click to open modal -> Justification: Keeps the main layout clean while allowing users to access detailed project information on demand. Method: HTML/CSS/JS. 3. Education -> Goal: Inform -> Presentation: Vertical Timeline -> Interaction: None -> Justification: Intuitive chronological display of academic history. Method: HTML/CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-900">
+                Sudharshan S
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#skills" class="text-slate-600 hover:text-teal-600 transition-colors">Skills</a>
+                <a href="#projects" class="text-slate-600 hover:text-teal-600 transition-colors">Projects</a>
+                <a href="#education" class="text-slate-600 hover:text-teal-600 transition-colors">Education</a>
+                <a href="#contact" class="text-slate-600 hover:text-teal-600 transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <section id="hero" class="text-center mb-20">
+            <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-4">Sudharshan S</h1>
+            <p class="text-xl md:text-2xl text-teal-700 font-medium mb-6">Python Full-Stack Developer</p>
+            <p class="max-w-3xl mx-auto text-slate-600 leading-relaxed">
+                Aspiring Python Full-Stack Developer proficient in Python, Django, JavaScript, HTML, CSS, and databases. 
+                Seeking an entry-level role to build scalable, user-friendly applications and contribute to organizational growth.
+            </p>
+        </section>
+
+        <section id="skills" class="py-20 bg-white rounded-2xl shadow-md">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-900">Technical Skills</h2>
+                <p class="text-slate-600 mt-2">A visual representation of my core competencies.</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-900">Projects Showcase</h2>
+                <p class="text-slate-600 mt-2">A selection of my recent work. Click on a project for more details.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Construction Field Management System</h3>
+                    <p class="text-teal-700 font-medium mb-4">React.js, Django, MongoDB</p>
+                    <p class="text-slate-600 flex-grow mb-6">A full-stack management system for real-time tracking of resources, staff, and project details.</p>
+                    <button onclick="openModal('construction')" class="mt-auto w-full bg-teal-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors">
+                        View Details
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Amazon Clone</h3>
+                    <p class="text-teal-700 font-medium mb-4">React.js, Django, SQL</p>
+                    <p class="text-slate-600 flex-grow mb-6">A full-stack e-commerce platform with core features including product catalog, shopping cart, and checkout.</p>
+                    <button onclick="openModal('amazon')" class="mt-auto w-full bg-teal-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors">
+                        View Details
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education" class="py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-900">Education & Languages</h2>
+                <p class="text-slate-600 mt-2">My academic background and linguistic skills.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center md:text-left">Academic Journey</h3>
+                    <div class="relative border-l-2 border-teal-200 ml-4 md:ml-0">
+                        <div class="mb-8 ml-8">
+                            <span class="absolute -left-4 flex items-center justify-center w-8 h-8 bg-teal-200 rounded-full ring-4 ring-white">
+                                <span class="w-3 h-3 bg-teal-600 rounded-full"></span>
+                            </span>
+                            <h4 class="font-bold text-slate-800">Master of Science (Applied Data Science)</h4>
+                            <p class="text-slate-600">SRM Institute of Technology</p>
+                            <p class="text-sm text-slate-500">2024 - 2026 | CGPA: 8.2/10</p>
+                        </div>
+                        <div class="mb-8 ml-8">
+                            <span class="absolute -left-4 flex items-center justify-center w-8 h-8 bg-teal-200 rounded-full ring-4 ring-white">
+                                <span class="w-3 h-3 bg-teal-600 rounded-full"></span>
+                            </span>
+                            <h4 class="font-bold text-slate-800">Bachelor of Science (Computer Science)</h4>
+                            <p class="text-slate-600">Dhanraj Baid Jain College, Chennai</p>
+                            <p class="text-sm text-slate-500">2021 - 2024 | CGPA: 7.2/10</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                     <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center md:text-left">Languages</h3>
+                     <div class="space-y-4">
+                        <div>
+                            <p class="font-medium text-slate-700">Tamil</p>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <p class="text-sm text-slate-500 text-right">Native</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-700">English</p>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                            <p class="text-sm text-slate-500 text-right">Professional</p>
+                        </div>
+                         <div>
+                            <p class="font-medium text-slate-700">Malayalam</p>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                <div class="bg-teal-600 h-2.5 rounded-full" style="width: 60%"></div>
+                            </div>
+                             <p class="text-sm text-slate-500 text-right">Conversational</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="bg-slate-800 text-slate-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+            <p class="mb-6">I'm currently seeking new opportunities. Feel free to reach out.</p>
+            <div class="flex justify-center items-center space-x-6">
+                <a href="mailto:sudharhshan.s@gmail.com" class="hover:text-teal-400 transition-colors">sudharhshan.s@gmail.com</a>
+                <span>&bull;</span>
+                <a href="tel:+919345558492" class="hover:text-teal-400 transition-colors">+91 9345558493</a>
+                 <span>&bull;</span>
+                <p>Chennai, India</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center">
+                <h3 id="modalTitle" class="text-2xl font-bold text-slate-900">Project Title</h3>
+                <button onclick="closeModal()" class="text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <div id="modalBody" class="p-6 overflow-y-auto">
+                <ul id="modalList" class="list-disc list-inside space-y-2 text-slate-600">
+                </ul>
+            </div>
+            <div class="p-4 bg-slate-50 border-t text-right">
+                 <button onclick="closeModal()" class="bg-slate-200 text-slate-800 font-medium py-2 px-5 rounded-lg hover:bg-slate-300 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsData = {
+                labels: ['Python', 'Django', 'JavaScript', 'React.js', 'HTML/CSS', 'SQL', 'MongoDB', 'Data Viz', 'ML'],
+                datasets: [{
+                    label: 'Proficiency',
+                    data: [9, 8.5, 8, 8, 8.5, 7.5, 7.5, 7, 6.5],
+                    backgroundColor: 'rgba(13, 148, 136, 0.2)',
+                    borderColor: 'rgb(15, 118, 110)',
+                    pointBackgroundColor: 'rgb(15, 118, 110)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(15, 118, 110)'
+                }]
+            };
+
+            const config = {
+                type: 'radar',
+                data: skillsData,
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14
+                                },
+                                color: '#334155'
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(255, 255, 255, 0.75)',
+                                color: '#64748b'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                },
+            };
+            
+            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(skillsChartCtx, config);
+        });
+
+        const projectDetails = {
+            construction: {
+                title: 'Construction Field Management System',
+                details: [
+                    'Developed a full-stack management system for real-time tracking of resources, staff, and project details.',
+                    'Built interactive dashboards and data entry forms using React.js.',
+                    'Implemented Django APIs to connect the frontend with the backend.',
+                    'Integrated MongoDB for scalable and flexible data storage.'
+                ]
+            },
+            amazon: {
+                title: 'Amazon Clone',
+                details: [
+                    'Built a full-stack e-commerce platform with core features including a product catalog, shopping cart, and checkout process.',
+                    'Developed the frontend using React.js and the backend using Django REST APIs for dynamic operations.',
+                    'Implemented user authentication and order management functionalities using a SQL database.'
+                ]
+            }
+        };
+
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalList = document.getElementById('modalList');
+
+        function openModal(projectKey) {
+            const project = projectDetails[projectKey];
+            if (project) {
+                modalTitle.textContent = project.title;
+                modalList.innerHTML = '';
+                project.details.forEach(detail => {
+                    const li = document.createElement('li');
+                    li.textContent = detail;
+                    modalList.appendChild(li);
+                });
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+    </script>
+
+</body>
+</html>
